@@ -20,7 +20,7 @@ getMovies().then((movies) => {
   });
     $('#movie-display').html(html);
     $('#add-movie-form').html(generateSearchForm());
-    $('#add-movie-btn').click(() => createMovie(newTitle, newRating, 4));
+    $('#add-movie-btn').click(() => createMovie(newTitle, newRating, 3));
 }).catch((error) => {
   alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
@@ -80,5 +80,9 @@ const writeToHTML = () => {
         console.log(error);
     });
 };
+
+
+
+
 
 
