@@ -8,24 +8,10 @@ const $ = require('jquery');
 /**
  * require style imports
  */
+//Importing movie database
 const {getMovies} = require('./api.js');
 
-
-getMovies().then((movies) => {
-  let html = '';
-  movies.forEach(({title, rating, id}) => {
-      html += `<div class='row'>`;
-      html += `<div class="col-xs-6 text-left">Title: ${title}`;
-      html += `Rating: ${rating}</div></div>`;
-  });
-    $('#movie-display').html(html);
-    $('#add-movie-form').html(generateSearchForm());
-    $('#add-movie-btn').click(() => createMovie(newTitle, newRating, 4));
-}).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.');
-  console.log(error);
-});
-
+//Creates THE search form
 const generateSearchForm = () => {
     let html = "";
     html += `<form>`;
@@ -37,13 +23,22 @@ const generateSearchForm = () => {
     return html;
 };
 
+// const generateMovieID = () => {
+//     getMovies().then((data) => {
+//         let newId = data.map(({id}) => {
+//             console.log(id);
+//         });
+//
+//         console.log(newId = newId.lastIndexOf(id)+1);
+//
+//         console.log(data);
+//     });
+// };
+//
+// generateMovieID();
 
-let newTitle;
-let newRating;
 
-
-
-
+//Takes values from the HTML form and adds them to the database from user input
 const createMovie = (movieTitle, movieRating, movieId) => {
     movieTitle = $('#movie-name').val();
     movieRating = $('#select-rating').val();
@@ -65,6 +60,8 @@ const createMovie = (movieTitle, movieRating, movieId) => {
         .catch(() => console.log("FAILURE!"));
 };
 
+
+//Function that writes the HTML
 const writeToHTML = () => {
     getMovies().then((movies) => {
         let html = '';
@@ -75,10 +72,17 @@ const writeToHTML = () => {
         });
         $('#movie-display').html(html);
         $('#add-movie-form').html(generateSearchForm());
+        $('#add-movie-btn').click(() => createMovie(newTitle, newRating, 4));
     }).catch((error) => {
         alert('Oh no! Something went wrong.\nCheck the console for details.');
         console.log(error);
     });
 };
 
+
+let newTitle;
+let newRating;
+
+
+writeToHTML();
 
