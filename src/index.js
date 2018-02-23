@@ -3,29 +3,15 @@
  */
 import sayHello from './hello';
 sayHello('World');
-const $ = require('jquery');
+// const $ = require('jquery');
 
 /**
  * require style imports
  */
+//Importing movie database
 const {getMovies} = require('./api.js');
 
-
-getMovies().then((movies) => {
-  let html = '';
-  movies.forEach(({title, rating, id}) => {
-      html += `<div class='row'>`;
-      html += `<div class="col-xs-6 text-left">Title: ${title}`;
-      html += `Rating: ${rating}</div></div>`;
-  });
-    $('#movie-display').html(html);
-    $('#add-movie-form').html(generateSearchForm());
-    $('#add-movie-btn').click(() => createMovie(newTitle, newRating, 3));
-}).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.');
-  console.log(error);
-});
-
+//Creates THE search form
 const generateSearchForm = () => {
     let html = "";
     html += `<form>`;
@@ -38,16 +24,12 @@ const generateSearchForm = () => {
 };
 
 
-let newTitle;
-let newRating;
 
-
-
-
-const createMovie = (movieTitle, movieRating, movieId) => {
+//Takes values from the HTML form and adds them to the database from user input
+const createMovie = (movieTitle, movieRating) => {
     movieTitle = $('#movie-name').val();
     movieRating = $('#select-rating').val();
-    const newMovie = {title: movieTitle, rating: movieRating, id: movieId};
+    const newMovie = {title: movieTitle, rating: movieRating};
     const url = 'api/movies';
     const options = {
         method: 'POST',
@@ -65,16 +47,38 @@ const createMovie = (movieTitle, movieRating, movieId) => {
         .catch(() => console.log("FAILURE!"));
 };
 
+//Function that writes the HTML
 const writeToHTML = () => {
     getMovies().then((movies) => {
         let html = '';
         movies.forEach(({title, rating, id}) => {
             html += `<div class='row'>`;
-            html += `<div class="col-xs-6 text-left">Title: ${title}`;
+            html += `<div class="col-xs-6 text-left"><button class="delete-btn glyphicon glyphicon-remove"></button>Title: ${title}`;
             html += `Rating: ${rating}</div></div>`;
         });
+
         $('#movie-display').html(html);
+
+
+        let deleteBtns = $('.delete-btn');
+
+        let i = 0;
+
+        for (let deleteBtn of deleteBtns) {
+            $(deleteBtn).data('id', movies[i].id);
+            i += 1;
+        }
+
+        $(".delete-btn").click(function() {
+            console.log($(this).data("id"));
+        });
+
+
         $('#add-movie-form').html(generateSearchForm());
+        $('#add-movie-btn').click(function () {
+            createMovie(newTitle, newRating);
+        });
+
     }).catch((error) => {
         alert('Oh no! Something went wrong.\nCheck the console for details.');
         console.log(error);
@@ -83,6 +87,12 @@ const writeToHTML = () => {
 
 
 
+
+
+
+let newTitle;
+let newRating;
+writeToHTML();
 
 
 
