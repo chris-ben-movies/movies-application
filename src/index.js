@@ -15,16 +15,16 @@ getMovies().then((movies) => {
   console.log('Here are all the movies:');
   let html = '';
   movies.forEach(({title, rating, id}) => {
-      html += '<ul>';
-      html += `<li>Title: ${title}</li>`;
-      html += `<li>Rating: ${rating}</li>`;
-      html+= '</ul>';
+      html += `<div class='row'>`;
+      html += `<div class="col-xs-6 text-left">Title: ${title}`;
+      html += `Rating: ${rating}</div></div>`;
   });
     $('#movie-display').html(html);
 }).catch((error) => {
-  alert('Oh no! Something went wrong.\nCheck the console for details.')
+  alert('Oh no! Something went wrong.\nCheck the console for details.');
   console.log(error);
 });
+
 
 
 
