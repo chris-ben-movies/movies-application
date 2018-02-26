@@ -1,27 +1,29 @@
 {
   "movies": [
     {
-      "id": 3
-    },
-    {
-      "title": "BTTF",
+      "title": "Someone's Movie",
       "rating": "4",
-      "id": 4
-    },
-    {
-      "title": "",
-      "rating": "default",
-      "id": 5
-    },
-    {
-      "title": "New Name",
-      "rating": "5",
       "id": 6
     },
     {
-      "title": "New Movie",
-      "rating": "4",
+      "title": "Terrible Movie",
+      "rating": "1",
       "id": 7
+    },
+    {
+      "title": "Woop",
+      "rating": "Unrated",
+      "id": 8
+    },
+    {
+      "title": "Chris' Movie",
+      "rating": "1",
+      "id": 9
+    },
+    {
+      "title": "Woot",
+      "rating": "3",
+      "id": 10
     }
   ]
 }
