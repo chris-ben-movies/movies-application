@@ -2,9 +2,33 @@ html, body {
     height: 100%;
 }
 
+body {
+    background: url("./img/bg-img.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .container {
     position: relative;
     top: 50%;
     transform: translateY(-100%);
     text-align: center;
+}
+
+input,
+select{
+    width: 100%;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+.highlight {
+    background-color: salmon;
+}
+
+.active {
+    background-color: salmon;
 }

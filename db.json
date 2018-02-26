@@ -1,27 +1,44 @@
 {
   "movies": [
     {
-      "id": 3
-    },
-    {
-      "title": "BTTF",
-      "rating": "4",
-      "id": 4
-    },
-    {
-      "title": "",
-      "rating": "default",
-      "id": 5
-    },
-    {
-      "title": "New Name",
-      "rating": "5",
+      "title": "Look at this awesome movie",
+      "rating": "2",
       "id": 6
     },
     {
-      "title": "New Movie",
-      "rating": "4",
+      "title": "Terrible Movie",
+      "rating": "1",
       "id": 7
+    },
+    {
+      "title": "Woop",
+      "rating": "Unrated",
+      "id": 8
+    },
+    {
+      "title": "This",
+      "rating": "3",
+      "id": 9
+    },
+    {
+      "title": "Woot",
+      "rating": "3",
+      "id": 10
+    },
+    {
+      "title": "Huzzah",
+      "rating": "Unrated",
+      "id": 11
+    },
+    {
+      "title": "Look at this new movie",
+      "rating": "4",
+      "id": 12
+    },
+    {
+      "title": "Ansother Teen Movie",
+      "rating": "3",
+      "id": 13
     }
   ]
 }
