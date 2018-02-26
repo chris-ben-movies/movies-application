@@ -68,7 +68,6 @@ const deleteMovie = (id) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        // body: JSON.stringify(newMovie),
     };
     return fetch(url, options)
         .then(() => {
@@ -78,27 +77,33 @@ const deleteMovie = (id) => {
         .catch(() => console.log("FAILURE!"));
 };
 
-//Edit Movie Function
-// const editMovie = (newMovieTitle, newMovieRating, id) => {
-//     newMovieTitle = $('#edit-name').val();
-//     newMovieRating = $('#edit-rating').val();
-//     const editedMovie = {title: newMovieTitle, rating: newMovieRating};
-//     const url = 'api/movies/' + id;
-//     const options = {
-//         method: 'PUT',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(editedMovie),
-//     };
-//     return fetch(url, options)
-//         .then(() => {
-//             writeToHTML();
-//             console.log('Success')
-//         })
-//         .catch(() => console.log("FAILURE!"));
-// };
 
+
+
+// Edit Movie Function
+
+const editMovie = (id) => {
+    let newTitle = $('#edit-name').val();
+    let newRating = $('#edit-rating').val();
+    console.log( newTitle, newRating );
+    const editedMovie = {title: newTitle, rating: newRating};
+    const url = `api/movies/${id}`;
+    console.log(url);
+
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(editedMovie),
+    };
+    return fetch(url, options)
+        .then(() => {
+            writeToHTML();
+            console.log('Success')
+        })
+        .catch(() => console.log("FAILURE!"));
+};
 
 
 
@@ -136,19 +141,20 @@ const writeToHTML = () => {
             $(editBtn).data('id', movies[j].id);
             j += 1;
         }
-        //Adds click events to each delete button.
-        //TODO add a delete from database function;
+        //Adds click events to each edit button.
+        //TODO add an edit button from database function;
         $(".edit-btn").click(function() {
             console.log($(this).data("id"));
             $('#edit-form-display').html(generateEditForm());
+            $('#finish-edit-btn').attr('data-id',$(this).data('id'));
             $("#finish-edit-btn").click(function(){
                 //CALL EDIT MOVIE
+                console.log($(this).data("id"));
                 editMovie($(this).data("id"));
-               // console.log("HEY CLICKED DONE!");
+                console.log($(this).data("id"));
             });
-            // console.log($("#finish-edit-btn").html());
-            // editMovie($(this).data("id"));
         });
+
 
         $('#add-movie-form').html(generateSearchForm());
         $('#add-movie-btn').click(function () {
@@ -160,9 +166,6 @@ const writeToHTML = () => {
         console.log(error);
     });
 };
-
-
-
 
 
 
