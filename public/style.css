@@ -1,6 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Boogaloo|Courgette|Kalam');
+
+
 html, body {
     height: 100%;
+    margin: 0;
+    padding:0;
 }
+
+h1{
+    color: #FFF;
+    font-family: courgette;
+    font-size: 4em;
+}
+
+td,th{
+    font-family: kalam;
+    color: #FFF;
+    padding: 1%;
+}
+
+ .table-hover tbody tr:hover > td {
+    background-color: rgba(100, 100, 100, 0.5);
+}
+
+.table-hover tbody tr:hover > th{
+    background-color:transparent;
+}
+
+#edit-form-display{
+    margin-top: 5%;
+}
+
+.btn{
+    border: none;
+    border-radius:0;
+}
+
+th{
+    font-size: 2em;
+}
+
+#movie-display{
+    opacity: 1.0;
+}
+
+.jumbotron{
+    background: rgba(0, 0, 0, 0.6);
+}
+
 
 body {
     background: url("./img/bg-img.png") no-repeat;
@@ -19,6 +66,19 @@ body {
 input,
 select{
     width: 100%;
+    height: 3em;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-family: kalam;
+    outline: none;
+    border: none;
+    color:#fff;
+    border-radius:0;
+}
+
+input:focus{
+    background-color: rgba(0, 0, 0, 0.1);
+    border:2px solid white;
+
 }
 
 .submit-button {
@@ -31,4 +91,8 @@ select{
 
 .active {
     background-color: salmon;
+}
+
+.disabled-field{
+    background-color:grey;
 }

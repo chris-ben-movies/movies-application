@@ -21,11 +21,15 @@ const generateAddForm = () => {
     html += `</div></div>`;
     html += `<div class="row">`;
     html += `<div class='col-xs-12'>`;
-    html += `<select name="movie-rating" id="select-rating"><option value="Unrated" selected>Select Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>`;
+    html += `<select name="movie-rating" id="select-rating" class="form-control">
+<option value="Unrated" selected>Select Rating</option>
+<option value="1">1</option><option value="2">2</option>
+<option value="3">3</option><option value="4">4</option>
+<option value="5">5</option></select>`;
     html += `</div></div>`;
     html += `<div class='row'>`;
     html += `<div class="col-xs-12">`;
-    html += `<button id="add-movie-btn" type="button" class="btn btn-default submit-button">Add</button></div></div>`;
+    html += `<button id="add-movie-btn" type="button" class="btn btn-success submit-button">Add</button></div></div>`;
     html += `</form>`;
 
     return html;
@@ -44,7 +48,7 @@ const generateEditForm = function () {
     html += `<select name="edit-rating" id="edit-rating"><option value="Unrated" selected>Select New Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div></div>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<button id="finish-edit-btn" type="button" class="btn btn-default submit-button">Done</button></div></div>`;
+    html += `<button id="finish-edit-btn" type="button" class="btn btn-info submit-button">Done</button></div></div>`;
     html += `</form>`;
     return html;
 };
@@ -54,6 +58,9 @@ const generateEditForm = function () {
 
 //Takes values from the HTML form and adds them to the database from user input
 const createMovie = (movieTitle, movieRating) => {
+    $('#add-movie-btn').addClass('disabled').removeClass('btn-success').addClass('btn-default');
+    $('input, select').addClass('disabled').addClass('disabled-field');
+
     //takes the value of the input fields and assigns them as local variables
     movieTitle = $('#movie-name').val();
     movieRating = $('#select-rating').val();
@@ -139,10 +146,10 @@ const writeToHTML = () => {
     //Pulls the database
     getMovies().then((movies) => {
         let html = '';
-        html += `<table id="movie-table" class="col-xs-6 text-left table-bordered"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
+        html += `<table id="movie-table" class="col-xs-6 text-left table-hover"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
         //Creates new movie html.
         movies.forEach(({title, rating}) => {
-            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil"></button><button class="delete-btn glyphicon glyphicon-remove"></button></td><td>${title}</td><td>${rating}</td></tr>`;
+            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil btn btn-info col-xs-6"></button><button class="delete-btn glyphicon glyphicon-remove btn btn-danger col-xs-6"></button></td><td>${title}</td><td>${rating}</td></tr>`;
         });
         html += `</table>`;
 
