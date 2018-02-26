@@ -1,64 +1,70 @@
 {
   "movies": [
     {
-      "title": "COol movie",
+      "title": "Back to the Future II",
+      "rating": "5",
+      "genre": "Action/Adventure",
+      "id": 1
+    },
+    {
+      "title": "Saving Private Ryan",
+      "rating": "5",
+      "genre": "Romance",
+      "id": 2
+    },
+    {
+      "title": "2001: A Space Odyssey",
+      "rating": "1",
+      "genre": "Sci-fi",
+      "id": 3
+    },
+    {
+      "title": "Troll Hunter",
+      "rating": "1",
+      "genre": "Horror",
+      "id": 4
+    },
+    {
+      "title": "The Room",
+      "rating": "3",
+      "genre": "Drama",
+      "id": 5
+    },
+    {
+      "title": "Blood Diamond",
       "rating": "4",
+      "genre": "Drama",
       "id": 6
     },
     {
-      "title": "Ok Movie",
-      "rating": "2",
+      "title": "The Conjuring",
+      "rating": "4",
+      "genre": "Horror",
       "id": 7
     },
     {
-      "title": "New Movie",
-      "rating": "1",
+      "title": "Finding Nemo",
+      "rating": "4",
+      "genre": "Comedy",
+      "id": 8
+    },
+    {
+      "title": "The Ritual",
+      "rating": "4",
+      "genre": "Horror",
       "id": 9
     },
     {
-      "title": "Woot",
+      "title": "Thor",
       "rating": "3",
+      "genre": "Thriller",
       "id": 10
     },
     {
-      "title": "Look at this new movie",
+      "title": "Juno",
       "rating": "4",
-      "id": 12
-    },
-    {
-      "title": "Hocus Pocus",
-      "rating": "4",
-      "id": 14
-    },
-    {
-      "title": "LOTR",
-      "rating": "5",
-      "id": 15
-    },
-    {
-      "title": "Black Panther",
-      "rating": "4",
-      "id": 16
-    },
-    {
-      "title": "Crazy New Movie",
-      "rating": "2",
-      "id": 17
-    },
-    {
-      "title": "New Movie",
-      "rating": "2",
-      "id": 18
-    },
-    {
-      "title": "Wup",
-      "rating": "4",
-      "id": 19
-    },
-    {
-      "title": "Sahweet",
-      "rating": "4",
-      "id": 20
+      "genre": "Indie",
+      "id": 11
     }
   ]
 }

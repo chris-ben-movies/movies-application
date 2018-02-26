@@ -17,11 +17,19 @@ const generateAddForm = () => {
     html += `<form>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<input name="select-rating" id="movie-name" type="text" placeholder="Add a Movie" aria-label="name" value="">`;
+    html += `<input name="select-rating" class="movie-name-input" id="movie-name" type="text" placeholder="Add a Movie" aria-label="name" value="">`;
+    html += `</div></div>`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
+    html += `<select class="col-xs-12 movie-genre-select"><option value="Unspecified" selected>Select a Genre</option><option value="Action/Adventure">Action/Adventure</option><option value="Comedy">Comedy</option><option value="Drama">Drama</option><option value="Horror">Horror</option><option 
+value="Indie">Indie
+</option><option value="Romance">Romance</option><option 
+value="Sci-Fi">Sci
+-Fi</option><option value="Thriller">Thriller</option></select>`;
     html += `</div></div>`;
     html += `<div class="row">`;
     html += `<div class='col-xs-12'>`;
-    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="1"> <span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="1" checked> <span class="glyphicon glyphicon-star"></span></label><br>`;
     html += `<label><input name="movie-rating" class="select-rating" type="radio" value="2"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
     html += `<label><input name="movie-rating" class="select-rating" type="radio" value="3"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></label><br>`;
     html += `<label><input name="movie-rating" class="select-rating" type="radio" value="4"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
@@ -41,10 +49,18 @@ const generateEditForm = function () {
     html += `<form class="edit-form">`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<input id="edit-name" type="text" placeholder="Edit Movie Title" aria-label="name" value=""></div></div>`;
+    html += `<input class="edit-name-input" id="edit-name" type="text" placeholder="Edit Movie Title" aria-label="name" value=""></div></div>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="1"> <span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<select class="col-xs-12 movie-genre-select"><option value="Unspecified" selected>Select a Genre</option><option value="Action/Adventure">Action/Adventure</option><option value="Comedy">Comedy</option><option value="Drama">Drama</option><option value="Horror">Horror</option><option 
+value="Indie">Indie
+</option><option value="Romance">Romance</option><option 
+value="Sci-fi">Sci
+-Fi</option><option value="Thriller">Thriller</option></select>`;
+    html += `</div></div>`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="1" checked> <span class="glyphicon glyphicon-star"></span></label><br>`;
     html += `<label><input name="edit-rating" class="select-rating" type="radio" value="2"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
     html += `<label><input name="edit-rating" class="select-rating" type="radio" value="3"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></label><br>`;
     html += `<label><input name="edit-rating" class="select-rating" type="radio" value="4"> <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
@@ -65,7 +81,7 @@ const displayLoadBar = () => {
 
 
 //Takes values from the HTML form and adds them to the database from user input
-    const createMovie = (movieTitle, movieRating) => {
+    const createMovie = (movieTitle, movieRating, movieGenre) => {
     $('#add-movie-btn').addClass('disabled').removeClass('btn-success').addClass('btn-default');
     $('input, select').addClass('disabled').addClass('disabled-field');
 
@@ -75,10 +91,11 @@ const displayLoadBar = () => {
 
     movieRating = $('input[name=movie-rating]:checked').val();
     movieTitle = $('#movie-name').val();
+    movieGenre = $('.movie-genre-select').val();
 
 
     //Create a new movie object
-    const newMovie = {title: movieTitle, rating: movieRating};
+    const newMovie = {title: movieTitle, rating: movieRating, genre: movieGenre};
     //Pull the database for the movies
     const url = 'api/movies';
     //Options for the request
@@ -96,7 +113,6 @@ const displayLoadBar = () => {
     //Make the request
     return fetch(url, options)
         .then(() => {
-
             //When the request returns, write the new movie to the page.
             writeToHTML();
             console.log('Success')
@@ -132,8 +148,9 @@ const editMovie = (id) => {
     //Get the new title and rating from the input fields.
     let newTitle = $('#edit-name').val();
     let newRating = $('input[name=edit-rating]:checked').val();
+    let newGenre = $('.movie-genre-select').val();
     //Create a new edited movie object with the new property values
-    const editedMovie = {title: newTitle, rating: newRating};
+    const editedMovie = {title: newTitle, rating: newRating, genre: newGenre};
     //get the associated object in the Database
     const url = `api/movies/${id}`;
     //Use patch to change the properties
@@ -165,10 +182,10 @@ const writeToHTML = () => {
     //Pulls the database
     getMovies().then((movies) => {
         let html = '';
-        html += `<table id="movie-table" class="col-xs-6 text-left table-hover"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
+        html += `<table id="movie-table" class="col-xs-6 text-left table-hover"><tr><th>Options</th><th>Title</th><th>Genre</th><th>Rating</th></tr>`;
         //Creates new movie html.
-        movies.forEach(({title, rating}) => {
-            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil btn btn-info col-xs-6"></button><button class="delete-btn glyphicon glyphicon-remove btn btn-danger col-xs-6"></button></td><td>${title}</td><td>${rating}</td></tr>`;
+        movies.forEach(({title, rating, genre}) => {
+            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil btn btn-info col-xs-6"></button><button class="delete-btn glyphicon glyphicon-remove btn btn-danger col-xs-6"></button></td><td>${title}</td><td>${genre}</td><td>${rating}</td></tr>`;
         });
         html += `</table>`;
 
@@ -204,6 +221,9 @@ const writeToHTML = () => {
         //TODO add an edit button from database function;
         $(".edit-btn").click(function() {
 
+            let selectedTitle = $(this).parent().next().text();
+            console.log($('#edit-name').val($(this).parent().next().text()));
+            console.log(selectedTitle);
 
             let selected = $(this).parent().parent().hasClass("highlight");
             $("tr").removeClass("highlight");
@@ -217,15 +237,34 @@ const writeToHTML = () => {
             $('#finish-edit-btn').attr('data-id',$(this).data('id'));
             $("#finish-edit-btn").click(function(){
                 //CALL EDIT MOVIE
+                if ($('#edit-name').val() !== "") {
+                    editMovie($(this).data("id"));
+                } else {
+                    $('#edit-name').addClass('required-field');
 
-                editMovie($(this).data("id"));
+                    $('#edit-name').keyup(function() {
+                        $(this).removeClass('required-field');
+                    })
+
+                }
+
+
             });
         });
         //Add a new movie form with associated button.
         $('.form-displays').html(generateAddForm());
         $('#add-movie-btn').click(function () {
 
-            createMovie(newTitle, newRating);
+            if ($('#movie-name').val() !== "") {
+                createMovie(newTitle, newRating);
+            } else {
+                $('#movie-name').addClass('required-field');
+
+                $('#movie-name').keyup(function() {
+                    $(this).removeClass('required-field');
+                })
+
+            }
 
         });
 
