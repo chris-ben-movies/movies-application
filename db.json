@@ -1,8 +1,8 @@
 {
   "movies": [
     {
-      "title": "Someone's Movie",
-      "rating": "4",
+      "title": "Look at this awesome movie",
+      "rating": "2",
       "id": 6
     },
     {
@@ -16,14 +16,29 @@
       "id": 8
     },
     {
-      "title": "Chris' Movie",
-      "rating": "1",
+      "title": "This",
+      "rating": "3",
       "id": 9
     },
     {
       "title": "Woot",
       "rating": "3",
       "id": 10
+    },
+    {
+      "title": "Huzzah",
+      "rating": "Unrated",
+      "id": 11
+    },
+    {
+      "title": "Look at this new movie",
+      "rating": "4",
+      "id": 12
+    },
+    {
+      "title": "Ansother Teen Movie",
+      "rating": "3",
+      "id": 13
     }
   ]
 }

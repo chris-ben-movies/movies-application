@@ -15,9 +15,17 @@ const {getMovies} = require('./api.js');
 const generateAddForm = () => {
     let html = "";
     html += `<form>`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
     html += `<input id="movie-name" type="text" placeholder="Movie Name" aria-label="name" value="">`;
+    html += `</div></div>`;
+    html += `<div class="row">`;
+    html += `<div class='col-xs-12'>`;
     html += `<select name="movie-rating" id="select-rating"><option value="Unrated" selected>Select Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>`;
-    html += `<button id="add-movie-btn" type="button" class="btn btn-default">Add</button>`;
+    html += `</div></div>`;
+    html += `<div class='row'>`;
+    html += `<div class="col-xs-12">`;
+    html += `<button id="add-movie-btn" type="button" class="btn btn-default submit-button">Add</button></div></div>`;
     html += `</form>`;
 
     return html;
@@ -27,10 +35,16 @@ const generateAddForm = () => {
 //Creates a form when the EDIT button is pressed.
 const generateEditForm = function () {
     let html = "";
-    html += `<form>`;
-    html += `<input id="edit-name" type="text" placeholder="New Name" aria-label="name" value="">`;
-    html += `<select name="edit-rating" id="edit-rating"><option value="Unrated" selected>Select New Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>`;
-    html += `<button id="finish-edit-btn" type="button" class="btn btn-default">Done</button>`;
+    html += `<form class="edit-form">`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
+    html += `<input id="edit-name" type="text" placeholder="New Name" aria-label="name" value=""></div></div>`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
+    html += `<select name="edit-rating" id="edit-rating"><option value="Unrated" selected>Select New Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div></div>`;
+    html += `<div class="row">`;
+    html += `<div class="col-xs-12">`;
+    html += `<button id="finish-edit-btn" type="button" class="btn btn-default submit-button">Done</button></div></div>`;
     html += `</form>`;
     return html;
 };
@@ -109,6 +123,7 @@ const editMovie = (id) => {
     };
     return fetch(url, options)
         .then(() => {
+            $('.edit-form').html('');
             //Rewrite the page with the new content
             writeToHTML();
             console.log('Success')
@@ -124,13 +139,12 @@ const writeToHTML = () => {
     //Pulls the database
     getMovies().then((movies) => {
         let html = '';
-        // html += `<table id="movie-table"><tr><th>Title</th><th>Rating</th></tr>`;
+        html += `<table id="movie-table" class="col-xs-6 text-left table-bordered"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
         //Creates new movie html.
         movies.forEach(({title, rating}) => {
-            html += `<div class='row'>`;
-            html += `<div class="col-xs-6 text-left"><button class="edit-btn glyphicon glyphicon-pencil"></button><button class="delete-btn glyphicon glyphicon-remove"></button>Title: ${title}`;
-            html += `Rating: ${rating}</div></div>`;
+            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil"></button><button class="delete-btn glyphicon glyphicon-remove"></button></td><td>${title}</td><td>${rating}</td></tr>`;
         });
+        html += `</table>`;
 
         //Writes Each movie to the HTML
         $('#movie-display').html(html);
@@ -159,11 +173,21 @@ const writeToHTML = () => {
         //Adds click events to each edit button.
         //TODO add an edit button from database function;
         $(".edit-btn").click(function() {
-            console.log($(this).data("id"));
-            $('#edit-form-display').html(generateEditForm());
+
+
+            let selected = $(this).parent().parent().hasClass("highlight");
+            $("tr").removeClass("highlight");
+            $('#edit-form-display').html("");
+            if(!selected) {
+                $(this).parent().parent().addClass("highlight");
+                $('#edit-form-display').html(generateEditForm());
+            }
+
+
             $('#finish-edit-btn').attr('data-id',$(this).data('id'));
             $("#finish-edit-btn").click(function(){
                 //CALL EDIT MOVIE
+
                 editMovie($(this).data("id"));
             });
         });
@@ -181,8 +205,9 @@ const writeToHTML = () => {
     });
 };
 
-
 //Initial write to html.
+let newTitle;
+let newRating;
 writeToHTML();
 
 
