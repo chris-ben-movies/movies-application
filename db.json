@@ -1,208 +1,70 @@
 {
   "movies": [
     {
-      "title": "Look at this awesome movie",
-      "rating": "2",
+      "title": "Back to the Future II",
+      "rating": "5",
+      "genre": "Action/Adventure",
+      "id": 1
+    },
+    {
+      "title": "Saving Private Ryan",
+      "rating": "5",
+      "genre": "Romance",
+      "id": 2
+    },
+    {
+      "title": "2001: A Space Odyssey",
+      "rating": "1",
+      "genre": "Sci-fi",
+      "id": 3
+    },
+    {
+      "title": "Troll Hunter",
+      "rating": "1",
+      "genre": "Horror",
+      "id": 4
+    },
+    {
+      "title": "The Room",
+      "rating": "3",
+      "genre": "Drama",
+      "id": 5
+    },
+    {
+      "title": "Blood Diamond",
+      "rating": "4",
+      "genre": "Drama",
       "id": 6
     },
     {
-      "title": "Terrible Movie",
-      "rating": "1",
+      "title": "The Conjuring",
+      "rating": "4",
+      "genre": "Horror",
       "id": 7
     },
     {
-      "title": "This",
-      "rating": "3",
+      "title": "Finding Nemo",
+      "rating": "4",
+      "genre": "Comedy",
+      "id": 8
+    },
+    {
+      "title": "The Ritual",
+      "rating": "4",
+      "genre": "Horror",
       "id": 9
     },
     {
-      "title": "Woot",
+      "title": "Thor",
       "rating": "3",
+      "genre": "Thriller",
       "id": 10
     },
     {
-      "title": "ALskjdlaksjlkdjasd",
-      "rating": "3",
+      "title": "Juno",
+      "rating": "4",
+      "genre": "Indie",
       "id": 11
-    },
-    {
-      "title": "Look at this new movie",
-      "rating": "4",
-      "id": 12
-    },
-    {
-      "title": "Ansother Teen Movie",
-      "rating": "3",
-      "id": 13
-    },
-    {
-      "title": "Hocus Pocus",
-      "rating": "4",
-      "id": 14
-    },
-    {
-      "title": "LOTR",
-      "rating": "5",
-      "id": 15
-    },
-    {
-      "title": "Black Panther",
-      "rating": "4",
-      "id": 16
-    },
-    {
-      "title": "Heya",
-      "rating": "4",
-      "id": 17
-    },
-    {
-      "title": "Heyo",
-      "rating": "2",
-      "id": 18
-    },
-    {
-      "title": "Ther",
-      "rating": "4",
-      "id": 19
-    },
-    {
-      "title": "Thelrj",
-      "rating": "4",
-      "id": 20
-    },
-    {
-      "title": "Work",
-      "rating": "4",
-      "id": 21
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 22
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 23
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 24
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 25
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 26
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 27
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 28
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 29
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 30
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 31
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 32
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 33
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 34
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 35
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 36
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 37
-    },
-    {
-      "title": "",
-      "rating": "Unrated",
-      "id": 38
-    },
-    {
-      "title": "New Movie",
-      "rating": "",
-      "id": 39
-    },
-    {
-      "title": "New moveiee",
-      "id": 40
-    },
-    {
-      "title": "Alksjlakjsd",
-      "id": 41
-    },
-    {
-      "title": "lotr",
-      "id": 42
-    },
-    {
-      "title": "New new",
-      "id": 43
-    },
-    {
-      "title": "asdasd",
-      "id": 44
-    },
-    {
-      "title": "newneklwn",
-      "id": 45
-    },
-    {
-      "title": "new movie",
-      "rating": "1",
-      "id": 46
-    },
-    {
-      "title": "lkasldjsad",
-      "rating": "5",
-      "id": 47
-    },
-    {
-      "title": "llkajsldkjasldjl",
-      "rating": "3",
-      "id": 48
     }
   ]
 }
