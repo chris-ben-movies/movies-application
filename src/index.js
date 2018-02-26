@@ -17,17 +17,20 @@ const generateAddForm = () => {
     html += `<form>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<input id="movie-name" type="text" placeholder="Movie Name" aria-label="name" value="">`;
+    html += `<input name="select-rating" id="movie-name" type="text" placeholder="Movie Name" aria-label="name" value="">`;
     html += `</div></div>`;
     html += `<div class="row">`;
     html += `<div class='col-xs-12'>`;
-    html += `<select name="movie-rating" id="select-rating"><option value="Unrated" selected>Select Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="1"><span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="2"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="3"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="4"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
+    html += `<label><input name="movie-rating" class="select-rating" type="radio" value="5"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
     html += `</div></div>`;
     html += `<div class='row'>`;
     html += `<div class="col-xs-12">`;
-    html += `<button id="add-movie-btn" type="button" class="btn btn-default submit-button">Add</button></div></div>`;
+    html += `<button id="add-movie-btn" type="button" class="btn btn-success submit-button">Add</button></div></div>`;
     html += `</form>`;
-
     return html;
 };
 
@@ -41,10 +44,14 @@ const generateEditForm = function () {
     html += `<input id="edit-name" type="text" placeholder="New Name" aria-label="name" value=""></div></div>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<select name="edit-rating" id="edit-rating"><option value="Unrated" selected>Select New Rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></div></div>`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="1"><span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="2"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="3"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span></label><br>`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="4"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
+    html += `<label><input name="edit-rating" class="select-rating" type="radio" value="5"><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star"></span> </label><br>`;
     html += `<div class="row">`;
     html += `<div class="col-xs-12">`;
-    html += `<button id="finish-edit-btn" type="button" class="btn btn-default submit-button">Done</button></div></div>`;
+    html += `<button id="finish-edit-btn" type="button" class="btn btn-info submit-button">Done</button></div></div>`;
     html += `</form>`;
     return html;
 };
@@ -53,10 +60,19 @@ const generateEditForm = function () {
 
 
 //Takes values from the HTML form and adds them to the database from user input
-const createMovie = (movieTitle, movieRating) => {
+    const createMovie = (movieTitle, movieRating) => {
+    $('#add-movie-btn').addClass('disabled').removeClass('btn-success').addClass('btn-default');
+    $('input, select').addClass('disabled').addClass('disabled-field');
+
+
+
     //takes the value of the input fields and assigns them as local variables
+
+    movieRating = $('input[name=movie-rating]:checked').val();
     movieTitle = $('#movie-name').val();
-    movieRating = $('#select-rating').val();
+
+
+
     //Create a new movie object
     const newMovie = {title: movieTitle, rating: movieRating};
     //Pull the database for the movies
@@ -107,7 +123,7 @@ const deleteMovie = (id) => {
 const editMovie = (id) => {
     //Get the new title and rating from the input fields.
     let newTitle = $('#edit-name').val();
-    let newRating = $('#edit-rating').val();
+    let newRating = $('input[name=edit-rating]:checked').val();
     //Create a new edited movie object with the new property values
     const editedMovie = {title: newTitle, rating: newRating};
     //get the associated object in the Database
@@ -139,10 +155,10 @@ const writeToHTML = () => {
     //Pulls the database
     getMovies().then((movies) => {
         let html = '';
-        html += `<table id="movie-table" class="col-xs-6 text-left table-bordered"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
+        html += `<table id="movie-table" class="col-xs-6 text-left table-hover"><tr><th>Options</th><th>Title</th><th>Rating</th></tr>`;
         //Creates new movie html.
         movies.forEach(({title, rating}) => {
-            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil"></button><button class="delete-btn glyphicon glyphicon-remove"></button></td><td>${title}</td><td>${rating}</td></tr>`;
+            html += `<tr><td><button class="edit-btn glyphicon glyphicon-pencil btn btn-info col-xs-6"></button><button class="delete-btn glyphicon glyphicon-remove btn btn-danger col-xs-6"></button></td><td>${title}</td><td>${rating}</td></tr>`;
         });
         html += `</table>`;
 
